@@ -39,22 +39,32 @@
             <p>O's score: <span id="o-score">0</span></p>
             <!-- game options -->
             <form name="game-opts">
-                <h3>Game settings</h3>
+                <h3>Game options</h3>
                 <p>Customize the game here (these aren't saved)</p>
                 <input type="checkbox" name="computer" /> Play with computer
                 <br />
                 <div class="with-computer">
-                    <input type="checkbox" name="smart" checked /> Enable smart mode with an AI
-                    <br />
                     <input type="checkbox" name="computerFirst" /> Computer will be on first move
                     <br />
                     <input type="checkbox" name="delayed" /> Add a delay effect for computer
                     <br />
+                    <p>Game difficulty</p>
+                    <fieldset>
+                        <input type="radio" name="difficulty" value="0" id="random" />
+                        <label for="random">Random</label><br />
+                        <input type="radio" name="difficulty" value="1" id="easy" />
+                        <label for="easy">Easy</label><br />
+                        <input type="radio" name="difficulty" value="2" id="normal" />
+                        <label for="normal">Normal</label><br />
+                        <input type="radio" name="difficulty" value="3" id="hard" />
+                        <label for="hard">Hard</label><br />
+                    </fieldset>
                 </div>
-                <p>Tap below to change game settings (this would reset your current game)</p>
-                <input type="submit" value="Update game settings" />
+                <p>Tap below to change game options (this would reset your current game)</p>
+                <input type="submit" value="Update game options" />
             </form>
         </div>
+        <p><em>If anything goes wrong, try refresh the page :)</em></p>
         <p><a href="https://github.com/vytdev/tictactoe/">Source Code</a></p>
     </body>
 </html>

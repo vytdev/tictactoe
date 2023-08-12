@@ -87,6 +87,10 @@ input[type=submit] {
     width: 100%;
 }
 
+fieldset {
+    border: 0;
+}
+
 noscript {
     display: block;
     margin-left: 2em;

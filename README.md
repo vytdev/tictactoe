@@ -12,12 +12,15 @@ This features:
 - 1 on 1
 - Easily customizable
 - Computer mode
-- Smart mode (for computer)
+- Custom difficulty
+    - Random
+    - Easy
+    - Normal
+    - Hard
 
 Todo:
 
-- Custom difficulty (for AI)
-- Keyboard mode
+- Keyboard for playing
 - Support many other variants
 
 ## Contributing

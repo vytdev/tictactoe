@@ -9,16 +9,17 @@
     // ==================== CONFIG ====================
     // whether to play with computer
     var computer = false;
-    // whether to do smart mode for computer
-    var smart = true;
     // add a delayed effect for computer
     var delayed = false;
     // who will move first, true to computer
     var computerFirst = false;
+    // game difficulty
+    var difficulty = 2;
     // length of tic-tac-toe table sides
     var len = 3;
     
     // ==================== VARS ====================
+    var maxscale = 3; // scaling for difficulty
     var active = true; // whether the game is active
     var areas = document.getElementById("areas"); // table object
     var aiDeciding = false; // whether computer is deciding
@@ -157,10 +158,10 @@
                 }
             }
             if (char == Players.X) {
-                xScore++;
+                xScore += check.length;
                 xScoreView.innerHTML = xScore;
             } else {
-                oScore++;
+                oScore += check.length;
                 oScoreView.innerHTML = oScore;
             }
             return true;
@@ -182,7 +183,7 @@
         // determine the position
         var pos;
         // smart mode
-        if (smart) {
+        if (Math.random() <= (difficulty / maxscale)) {
             var best = -Infinity;
             for (var i = 0; i < slots; i++) {
                 if (!board[i]) {
@@ -220,12 +221,17 @@
     
     // minimax algorithm (smart mode)
     function minimax(ai) {
-        var val = validateWin(board, ai ? Players.AI : Players.HUMAN)
-            ? (ai ? 1 : -1)
-            : (ai ? -1 : 1);
+        var val = validateWin(board, ai
+                ? (isX ? Players.X : Players.O)
+                : (isX ? Players.O : Players.X)
+            )
+                ? (ai ? 1 : -1)
+                : (ai ? -1 : 1);
         for (var i = 0; i < slots; i++) {
             if (!board[i]) {
-                board[i] = ai ? Players.HUMAN : Players.AI;
+                board[i] = ai
+                    ? (isX ? Players.O : Players.X)
+                    : (isX ? Players.X : Players.O);
                 val += minimax(!ai);
                 board[i] = null;
             }
@@ -246,9 +252,6 @@
         board = [];
         isX = true;
         inform("");
-        // update Players enum
-        Players["AI"] = computerFirst ? Players.X : Players.O;
-        Players["HUMAN"] = computerFirst ? Players.O : Players.X;
         // clear slots
         for (var i = 0; i < cells.length; i++) {
             var slot = cells[i];
@@ -257,11 +260,7 @@
         }
         // computer is in first move
         if (computer && computerFirst) {
-            left--;
-            var pos = Math.floor(Math.random() * slots);
-            board[pos] = Players.X;
-            cells[pos].innerHTML = Players.X;
-            isX = false;
+            computerMove();
         }
     }
     
@@ -277,12 +276,16 @@
         // update config
         // len config is not available due to its impact on performance
         computer = this.computer.checked;
-        smart = this.smart.checked;
         computerFirst = this.computerFirst.checked;
         delayed = this.delayed.checked;
+        difficulty = this.difficulty.value;
         // reset game
         reset();
     }
+    
+    // set maximum and default value for difficulty
+    document.forms["game-opts"].difficulty.max = maxscale;
+    document.forms["game-opts"].difficulty.value = difficulty;
     
     // inform function
     var msgBox = document.getElementById("msg-box");
