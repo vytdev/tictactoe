@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+        
+        <title>TicTacToe</title>
+        <meta name="description" content="My test game" />
+        <meta name="author" content="vytdev" />
+        
+        <!-- Preload -->
+        <link rel="preload" as="style" type="text/css" href="./style.css" />
+        <link rel="preload" as="style" type="text/javascript" href="./runner.js" />
+        
+        <!-- load resources -->
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+        <script type="text/javascript" src="./runner.js"></script>
+    </head><body>
+        <h1>TicTacToe</h1>
+        <p>A classic game on the web. Made by <a href="https://github.com/vytdev/">VYT</a>.</p>
+        <noscript>
+            <h3>JavaScript is disabled!</h3>
+            <p>
+            We detected that JavaScript is disabled on your browser. That is really
+            important for the game to work. Please enable it.
+            </p>
+        </noscript>
+        <!-- game is hidden when JavaScript is disabled -->
+        <div id="gamebox" style="display: none">
+            <!-- this should be auto generated with javascript -->
+            <div id="areas"></div>
+            <!-- msg box -->
+            <p id="msg-box"></p>
+            <!-- reset button -->
+            <button id="reset">Reset</button>
+            <p>X's score: <span id="x-score">0</span></p>
+            <p>O's score: <span id="o-score">0</span></p>
+            <!-- game options -->
+            <form name="game-opts">
+                <h3>Game settings</h3>
+                <p>Customize the game here (these aren't saved)</p>
+                <input type="checkbox" name="computer" /> Play with computer
+                <br />
+                <div class="with-computer">
+                    <input type="checkbox" name="smart" checked /> Enable smart mode with an AI
+                    <br />
+                    <input type="checkbox" name="computerFirst" /> Computer will be on first move
+                    <br />
+                    <input type="checkbox" name="delayed" /> Add a delay effect for computer
+                    <br />
+                </div>
+                <p>Tap below to change game settings (this would reset your current game)</p>
+                <input type="submit" value="Update game settings" />
+            </form>
+        </div>
+        <p><a href="https://github.com/vytdev/tictactoe/">Source Code</a></p>
+    </body>
+</html>
